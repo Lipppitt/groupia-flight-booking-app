@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import FlightListings from "@/components/FlightListings/FlightListings.vue";
+
 </script>
 
 <template>
   <main>
     <div class="container">
-      <FlightListings/>
+        <LoginForm/>
     </div>
   </main>
 </template>

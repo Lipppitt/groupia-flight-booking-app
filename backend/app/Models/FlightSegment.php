@@ -28,27 +28,27 @@ class FlightSegment extends Model
 
     public function flight(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Flight::class);
+        return $this->belongsTo(Flight::class, 'flight_id', 'uuid');
     }
 
     public function arrivalLocation(): \Illuminate\Database\Eloquent\Relations\hasOne
     {
-        return $this->hasOne(Location::class, 'arrival_location_id', 'id');
+        return $this->hasOne(Location::class, 'id', 'arrival_location_id');
     }
 
     public function departureLocation(): \Illuminate\Database\Eloquent\Relations\hasOne
     {
-        return $this->hasOne(Location::class, 'departure_location_id', 'id');
+        return $this->hasOne(Location::class, 'id', 'departure_location_id');
     }
 
     public function carrier(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(Carrier::class, 'carrier_id', 'id');
+        return $this->hasOne(Carrier::class, 'id', 'carrier_id');
     }
 
     public function aircraft(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(AirCraft::class, 'carrier_id', 'id');
+        return $this->hasOne(AirCraft::class, 'id', 'aircraft_id');
     }
 }
 

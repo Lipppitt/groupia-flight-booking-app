@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import FlightListings from "@/components/FlightListings/FlightListings.vue";
+
+import RegisterForm from "@/components/Auth/RegisterForm.vue";
 </script>
 
 <template>
   <main>
     <div class="container">
-      <FlightListings/>
+        <RegisterForm/>
     </div>
   </main>
 </template>
