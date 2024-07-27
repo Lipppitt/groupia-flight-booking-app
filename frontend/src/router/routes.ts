@@ -1,8 +1,6 @@
 import HomeView from "@/views/HomeView.vue";
 import BookFlightView from "@/views/Booking/BookFlightView.vue";
-import {auth} from "@/middleware/auth";
 import RegisterView from "@/views/Auth/RegisterView.vue";
-import {guest} from "@/middleware/guest";
 import LoginView from "@/views/Auth/LoginView.vue";
 import AccountView from "@/views/Auth/AccountView.vue";
 import AccountBookingsView from "@/views/Auth/AccountBookingsView.vue";
@@ -17,25 +15,33 @@ const routes: Array<RouteRecordRaw> = [
         path: '/book-flight',
         name: 'book-flight',
         component: BookFlightView,
-        beforeEnter: [auth],
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/register',
         name: 'register',
         component: RegisterView,
-        beforeEnter: [guest],
+        meta: {
+            requiresGuest: true
+        }
     },
     {
         path: '/login',
         name: 'login',
         component: LoginView,
-        beforeEnter: [guest],
+        meta: {
+            requiresGuest: true
+        }
     },
     {
         path: '/account',
         name: 'account',
         component: AccountView,
-        beforeEnter: [auth],
+        meta: {
+            requiresAuth: true
+        },
         routes: [
             {
                 path: '/bookings',

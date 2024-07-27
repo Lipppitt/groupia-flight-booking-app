@@ -2,8 +2,10 @@
 import {ref} from "vue";
 import {useUserStore} from "@/stores/userStore";
 import type {AxiosError} from "axios";
+import {useRoute} from "vue-router";
 
 const userStore = useUserStore();
+const route = useRoute();
 
 const form = ref({
   name: '',
@@ -84,6 +86,8 @@ const handleChange = (event) => {
     </div>
 
     <button type="submit" class="btn">Register</button>
+
+    <p>Already have an account? <router-link :to="{name: 'login', query: route.query}">Login</router-link></p>
   </form>
 </template>
 
