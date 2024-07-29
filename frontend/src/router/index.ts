@@ -8,9 +8,9 @@ const router = createRouter({
 });
 router.beforeEach(async (to, from, next) => {
   const userStore= useUserStore();
-  if (!userStore.user) {
+  if (!userStore.getUser) {
     try {
-      await userStore.getUser();
+      await userStore.fetchUser();
     } catch (err) {}
   }
 

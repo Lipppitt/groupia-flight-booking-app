@@ -32,6 +32,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+	protected $appends = [
+		'booking_flight_ids'
+	];
+
     /**
      * Get the attributes that should be cast.
      *
@@ -44,4 +48,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+	public function bookings(): \Illuminate\Database\Eloquent\Relations\HasMany
+	{
+		return $this->hasMany(FlightBooking::class);
+	}
+
+	public function getBookingFlightIdsAttribute()
+	{
+		return $this->bookings()->pluck('flight_id');
+	}
 }

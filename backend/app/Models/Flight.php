@@ -47,6 +47,11 @@ class Flight extends Model
         return $this->hasOne(AirCraft::class);
     }
 
+	public function bookings(): \Illuminate\Database\Eloquent\Relations\HasMany
+	{
+		return $this->hasMany(FlightBooking::class);
+	}
+
     public function getDepartsAttribute()
     {
         $segment = $this->segments()

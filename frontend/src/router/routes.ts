@@ -5,6 +5,7 @@ import LoginView from "@/views/Auth/LoginView.vue";
 import AccountView from "@/views/Auth/AccountView.vue";
 import AccountBookingsView from "@/views/Auth/AccountBookingsView.vue";
 import type {RouteRecordRaw} from "vue-router";
+import BookingOrderView from "@/views/Booking/BookingOrderView.vue";
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -15,6 +16,14 @@ const routes: Array<RouteRecordRaw> = [
         path: '/book-flight',
         name: 'book-flight',
         component: BookFlightView,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/booking-order/:id',
+        name: 'booking-order',
+        component: BookingOrderView,
         meta: {
             requiresAuth: true
         }
@@ -42,9 +51,9 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             requiresAuth: true
         },
-        routes: [
+        children: [
             {
-                path: '/bookings',
+                path: 'bookings',
                 name: 'account-bookings',
                 component: AccountBookingsView
             },

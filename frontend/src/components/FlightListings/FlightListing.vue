@@ -2,10 +2,6 @@
   import {useHelpers} from "@/composibles/useHelpers";
 
   const props = defineProps({
-      uuid: {
-          type: String,
-          required: true
-      },
       arrives: {
           type: Object,
           required: true
@@ -32,16 +28,14 @@
 </script>
 
 <template>
-  <div class="bg-white px-6 rounded-lg pt-3 pb-4 flex flex-col space-y-2 ">
+  <div class="bg-white h-full px-6 rounded-lg pt-3 pb-4 flex flex-col space-y-2 ">
     <h2 class="text-2xl">{{departs.city_code}} - {{arrives.city_code}}</h2>
     <p>
       <strong>Departs:</strong> {{getFormattedDate(departs.time)}}<br>
       <strong>Arrives:</strong> {{getFormattedDate(arrives.time)}}
     </p>
     <p class="text-lg font-semibold text-orange">{{getCurrencySymbolFromString(props.currency)}}{{props.totalPrice}}</p>
-    <router-link :to="{name: 'book-flight', query: {id: uuid}}" class="btn">
-        Book Now
-    </router-link>
+    <slot></slot>
   </div>
 </template>
 

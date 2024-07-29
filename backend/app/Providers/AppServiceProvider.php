@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Interfaces\FlightBookingInterface;
 use App\Interfaces\FlightDataImportInterface;
+use App\Services\FlightBookingService;
 use App\Services\FlightDataImportAmadeusService;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\ServiceProvider;
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(FlightDataImportInterface::class, FlightDataImportAmadeusService::class);
+		$this->app->bind(FlightBookingInterface::class, FlightBookingService::class);
     }
 
     /**

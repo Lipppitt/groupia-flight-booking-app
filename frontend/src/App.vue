@@ -5,3 +5,9 @@ import { RouterView } from 'vue-router'
 <template>
   <RouterView />
 </template>
+
+<style>
+#app {
+  min-height: 100vh;
+}
+</style>

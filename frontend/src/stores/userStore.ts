@@ -2,19 +2,24 @@ import {defineStore} from "pinia";
 import {computed, ref} from "vue";
 import axios from "axios";
 import {useRoute, useRouter} from "vue-router";
+import type {UserType} from "@/types/userType";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const useUserStore = defineStore('user', () => {
     const router = useRouter();
     const route = useRoute();
-    const user = ref(null);
+    const user = ref<UserType | null>(null);
 
     const isAuthenticated = computed(() => {
         return user.value?.id ?? false;
     });
 
-    async function getUser() {
+    const getUser = computed(() => {
+        return user.value;
+    })
+
+    async function fetchUser() {
         try {
             const response = await axios.get('/user', {
                 withCredentials: true,
@@ -29,7 +34,7 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
-    async function register(data) {
+    async function register(data: {name: string; email: string, password: string; password_confirmation: string}) {
         try {
             await setCSFRToken();
 
@@ -38,14 +43,15 @@ export const useUserStore = defineStore('user', () => {
             });
 
             if (response.status === 204) {
-                await router.push(route.query?.redirect || 'account')
+                const redirectPath = typeof route.query?.redirect === 'string' ? route.query.redirect : 'account';
+                await router.push(redirectPath);
             }
         } catch (err) {
            throw err;
         }
     }
 
-    async function login(data) {
+    async function login(data: {email: string, password: string}) {
         try {
             await setCSFRToken();
 
@@ -54,7 +60,8 @@ export const useUserStore = defineStore('user', () => {
             });
 
             if (response.status === 204) {
-                await router.push(route.query?.redirect || 'account')
+                const redirectPath = typeof route.query?.redirect === 'string' ? route.query.redirect : 'account';
+                await router.push(redirectPath);
             }
         } catch (err) {
             throw err;
@@ -67,5 +74,5 @@ export const useUserStore = defineStore('user', () => {
         });
     }
 
-    return { register, login, user, isAuthenticated, getUser }
+    return { register, login, fetchUser, user, isAuthenticated, getUser }
 })
