@@ -40,12 +40,6 @@ composer install
 php artisan migrate
 ```
 
-#### Generate Application Key
-
-```bash
-php artisan key:generate
-```
-
 #### Update the `.env` File
 
 Add the following lines to your `.env` file:
@@ -54,6 +48,12 @@ Add the following lines to your `.env` file:
 APP_URL=http://localhost:8000
 FRONTEND_URL=http://localhost:5173
 SANCTUM_STATEFUL_DOMAINS=localhost:8000,localhost:5173,localhost,localhost:8000,127.0.0.1:5173,127.0.0.1:8000
+```
+
+#### Generate Application Key
+
+```bash
+php artisan key:generate
 ```
 
 #### Import Flight Data
