@@ -16,10 +16,10 @@ return new class extends Migration
             $table->integer('external_id')->unique();
             $table->uuid('flight_id')->nullable();
 
-            $table->uuid('arrival_location_id')->nullable();
-            $table->uuid('departure_location_id')->nullable();
-            $table->uuid('carrier_id')->nullable();
-            $table->uuid('aircraft_id')->nullable();
+            $table->unsignedBigInteger('arrival_location_id')->nullable();
+            $table->unsignedBigInteger('departure_location_id')->nullable();
+            $table->unsignedBigInteger('carrier_id')->nullable();
+            $table->unsignedBigInteger('aircraft_id')->nullable();
 
             $table->foreign('flight_id')->references('uuid')->on('flights')->onDelete('cascade');
             $table->dateTimeTz('departure_time');
