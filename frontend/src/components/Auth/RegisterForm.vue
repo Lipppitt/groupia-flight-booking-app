@@ -2,7 +2,10 @@
 import {ref} from "vue";
 import {useUserStore} from "@/stores/userStore";
 import {useRoute} from "vue-router";
-import type {AxiosError} from "axios";
+import {type AxiosError} from "axios";
+import FormTitle from "@/components/Form/FormTitle.vue";
+import CustomLabel from "@/components/Form/CustomLabel.vue";
+import CustomInput from "@/components/Form/CustomInput.vue";
 
 type RegisterFormErrors = {
   name?:string[];
@@ -59,46 +62,60 @@ const handleChange = (event: Event) => {
 </script>
 
 <template>
-  <p v-if="errorMessage">{{errorMessage}}</p>
-
   <form @submit.prevent="handleSubmit" @change="handleChange">
-    <h2>Register</h2>
+    <FormTitle>Register</FormTitle>
+
+    <ErrorMessage :message="errorMessage"/>
 
     <div class="mb-2">
-      <label class="block" for="name">Name</label>
-      <input type="text" id="name" v-model="form.name" placeholder="Enter your name "/>
-      <span v-if="errors.name" class="block text-red-500 text-sm">
-        <span v-for="error in errors.name" :key="error">{{ error }}</span>
-      </span>
+      <CustomLabel name="email">Name</CustomLabel>
+      <CustomInput
+          id="name"
+          name="name"
+          v-model="form.name"
+          placeholder="Enter your name"
+          :errors="errors"
+      />
     </div>
 
     <div class="mb-2">
-      <label class="block" for="email">Email Address</label>
-      <input type="email" id="email" v-model="form.email" placeholder="Enter your email "/>
-      <span v-if="errors.email" class="block text-red-500 text-sm">
-        <span v-for="error in errors.email" :key="error">{{ error }}</span>
-      </span>
+      <CustomLabel name="email">Email Address</CustomLabel>
+      <CustomInput
+          id="email"
+          name="email"
+          v-model="form.email"
+          placeholder="Enter your email"
+          :errors="errors"
+      />
     </div>
 
     <div class="mb-2">
-      <label class="block" for="password">Password</label>
-      <input type="password" id="password" v-model="form.password"/>
-      <span v-if="errors.password" class="block text-red-500 text-sm">
-        <span v-for="error in errors.password" :key="error">{{ error }}</span>
-      </span>
+      <CustomLabel name="email">Password</CustomLabel>
+      <CustomInput
+          id="password"
+          name="password"
+          type="password"
+          v-model="form.password"
+          placeholder="Enter your password"
+          :errors="errors"
+      />
     </div>
 
     <div class="mb-2">
-      <label class="block" for="password_confirmation">Confirm Password</label>
-      <input type="password" id="password_confirmation" v-model="form.password_confirmation"/>
-      <span v-if="errors.password_confirmation" class="block text-red-500 text-sm">
-        <span v-for="error in errors.password_confirmation" :key="error">{{ error }}</span>
-      </span>
+      <CustomLabel name="email">Password</CustomLabel>
+      <CustomInput
+          id="password_confirmation"
+          name="password_confirmation"
+          type="password"
+          v-model="form.password_confirmation"
+          placeholder="Confirm your password"
+          :errors="errors"
+      />
     </div>
 
     <button type="submit" class="btn">Register</button>
 
-    <p>Already have an account? <router-link :to="{name: 'login', query: route.query}">Login</router-link></p>
+    <p class="text-center text-sm">Already have an account? <router-link class="underline" :to="{name: 'login', query: route.query}">Login</router-link></p>
   </form>
 </template>
 

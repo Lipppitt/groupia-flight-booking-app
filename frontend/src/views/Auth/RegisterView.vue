@@ -1,12 +1,11 @@
 <script setup lang="ts">
 
 import RegisterForm from "@/components/Auth/RegisterForm.vue";
+import AuthLayout from "@/layouts/AuthLayout.vue";
 </script>
 
 <template>
-  <main>
-    <div class="container">
-        <RegisterForm/>
-    </div>
-  </main>
+  <AuthLayout>
+      <RegisterForm/>
+  </AuthLayout>
 </template>

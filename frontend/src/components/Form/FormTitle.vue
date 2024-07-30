@@ -3,9 +3,7 @@
 </script>
 
 <template>
-  <div class="text-center text-tiny py-4">
-    <p>Built by Shaun Lippitt</p>
-  </div>
+  <h2 class="text-xl font-bold mb-2"><slot></slot></h2>
 </template>
 
 <style scoped>

@@ -17,8 +17,10 @@ const handleCancelBooking = async () => {
 
 onMounted(async () => {
   if (route.params.id) {
-    const id = route.query?.id as string;
-    await fetchBooking(id);
+    const id = route.params?.id?.toString();
+    if (id) {
+      await fetchBooking(id);
+    }
   }
 });
 </script>

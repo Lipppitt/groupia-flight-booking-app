@@ -14,3 +14,11 @@ body {
 .btn {
     @apply border border-cyan-900 px-4 py-2 text-center text-cyan-900 rounded hover:bg-cyan-900 hover:text-white transition-all;
 }
+
+label {
+    @apply font-medium;
+}
+
+input {
+    @apply border border-slate-300 rounded-lg px-2 py-2 w-full;
+}

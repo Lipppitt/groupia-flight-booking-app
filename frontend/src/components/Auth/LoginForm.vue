@@ -3,6 +3,9 @@ import { ref } from "vue";
 import { useUserStore } from "@/stores/userStore";
 import type { AxiosError } from "axios";
 import { useRoute } from "vue-router";
+import CustomInput from "@/components/Form/CustomInput.vue";
+import CustomLabel from "@/components/Form/CustomLabel.vue";
+import FormTitle from "@/components/Form/FormTitle.vue";
 
 type LoginFormErrors = {
   email?: string[];
@@ -55,25 +58,32 @@ const handleChange = (event: Event) => {
 </script>
 
 <template>
-  <p v-if="errorMessage">{{ errorMessage }}</p>
-
   <form @submit.prevent="handleSubmit" @change="handleChange">
-    <h2>Login</h2>
+    <FormTitle>Login</FormTitle>
+
+    <ErrorMessage :message="errorMessage"/>
 
     <div class="mb-2">
-      <label class="block" for="email">Email Address</label>
-      <input type="text" id="email" v-model="form.email" placeholder="Enter your email "/>
-      <span v-if="errors.email" class="block text-red-500 text-sm">
-        <span v-for="error in errors.email" :key="error">{{ error }}</span>
-      </span>
+      <CustomLabel name="email">Email Address</CustomLabel>
+      <CustomInput
+          id="email"
+          name="email"
+          v-model="form.email"
+          placeholder="Enter your email"
+          :errors="errors"
+      />
     </div>
 
     <div class="mb-2">
-      <label class="block" for="password">Password</label>
-      <input type="password" id="password" v-model="form.password"/>
-      <span v-if="errors.password" class="block text-red-500 text-sm">
-        <span v-for="error in errors.password" :key="error">{{ error }}</span>
-      </span>
+      <CustomLabel name="email">Password</CustomLabel>
+      <CustomInput
+          id="password"
+          name="password"
+          type="password"
+          v-model="form.password"
+          placeholder="Enter your password"
+          :errors="errors"
+      />
     </div>
 
     <button type="submit" class="btn">Login</button>
