@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {useUserStore} from "@/stores/userStore";
-import type {AxiosError} from "axios";
 import {useRoute} from "vue-router";
+import type {AxiosError} from "axios";
+
+type RegisterFormErrors = {
+  name?:string[];
+  email?: string[];
+  password?: string[];
+  password_confirmation?: string[];
+};
 
 const userStore = useUserStore();
 const route = useRoute();
@@ -16,7 +23,7 @@ const form = ref({
 
 const isLoading = ref(false);
 const errorMessage = ref<string | null>(null);
-const errors = ref({});
+const errors = ref<RegisterFormErrors>({});
 
 const handleSubmit = async () => {
   isLoading.value = true;
@@ -25,26 +32,30 @@ const handleSubmit = async () => {
 
   try {
     await userStore.register(form.value);
-  } catch (err: AxiosError) {
-    if (err.response.data.message) {
-      errorMessage.value = err.response.data.message;
+  } catch (err) {
+    const axiosError = err as AxiosError;
+    if (axiosError.response?.data?.message) {
+      errorMessage.value = axiosError.response.data.message;
     } else {
       errorMessage.value = "An error occurred. Please try again.";
     }
-    if (err.response.data.errors) {
-      errors.value = err.response.data.errors;
+    if (axiosError.response?.data?.errors) {
+      errors.value = axiosError.response.data.errors;
     }
   } finally {
     isLoading.value = false;
   }
 };
 
-const handleChange = (event) => {
+const handleChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  if (errors.value[target.id]) {
-    delete errors.value[target.id];
+  if (target.id) {
+    const key = target.id as keyof RegisterFormErrors;
+    if (errors.value[key]) {
+      delete errors.value[key];
+    }
   }
-}
+};
 </script>
 
 <template>

@@ -30,7 +30,7 @@ export const useUserStore = defineStore('user', () => {
                 user.value = response.data;
             }
         } catch (err) {
-            throw err;
+            console.error(err);
         }
     }
 
@@ -47,7 +47,7 @@ export const useUserStore = defineStore('user', () => {
                 await router.push(redirectPath);
             }
         } catch (err) {
-           throw err;
+            console.error(err);
         }
     }
 
@@ -64,7 +64,7 @@ export const useUserStore = defineStore('user', () => {
                 await router.push(redirectPath);
             }
         } catch (err) {
-            throw err;
+            console.error(err);
         }
     }
 

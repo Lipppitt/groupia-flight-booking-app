@@ -1,5 +1,5 @@
 export function useHelpers() {
-    const getFormattedDate = (dateTime) => {
+    const getFormattedDate = (dateTime: string) => {
         const date = new Date(dateTime);
         return date.toLocaleDateString('en-US', {
             weekday: 'long',
@@ -12,7 +12,7 @@ export function useHelpers() {
         });
     }
 
-    const getCurrencySymbolFromString = (currencyString) => {
+    const getCurrencySymbolFromString = (currencyString: string) => {
         switch (currencyString) {
             case 'EUR' :
                 return '€';

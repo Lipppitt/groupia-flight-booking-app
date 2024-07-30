@@ -11,7 +11,9 @@ router.beforeEach(async (to, from, next) => {
   if (!userStore.getUser) {
     try {
       await userStore.fetchUser();
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   const requiresAuth = to.meta.requiresAuth ?? false;

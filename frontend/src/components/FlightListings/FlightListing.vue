@@ -12,7 +12,7 @@
       },
       totalPrice: {
           type: Number,
-          default: ''
+          default: null,
       },
       currency: {
         type: String,

@@ -26,7 +26,7 @@ export function useBookings() {
                 }
             }
         } catch (err) {
-
+            console.error(err);
         } finally {
             isLoading.value = false;
         }
@@ -43,7 +43,7 @@ export function useBookings() {
                 booking.value = response.data;
             }
         } catch (err) {
-
+            console.error(err);
         } finally {
             isLoading.value = false;
         }
@@ -60,7 +60,7 @@ export function useBookings() {
                 usersBookings.value = response.data;
             }
         } catch (err) {
-
+            console.error(err);
         } finally {
             isLoading.value = false;
         }
@@ -77,7 +77,7 @@ export function useBookings() {
                 booking.value = response.data;
             }
         } catch (err) {
-
+            console.error(err);
         } finally {
             isLoading.value = false;
         }
