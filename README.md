@@ -17,7 +17,7 @@ The Groupia Flight Booking App is a comprehensive flight booking system that inc
 Start by cloning the repository to your local machine:
 
 ```bash
-git pull 'https://github.com/Lipppitt/groupia-flight-booking-app'
+git clone 'https://github.com/Lipppitt/groupia-flight-booking-app'
 ```
 
 ### 2. Set Up the Backend
